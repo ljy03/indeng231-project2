@@ -121,23 +121,30 @@ def build():
             'The following questions were routed through the keyword-ranking retriever, '
             'which correctly identified the primary source article in each case:', body),
     ]
+    cell = ParagraphStyle('cell', parent=styles['Normal'], fontSize=8.5, leading=11)
+    hdr  = ParagraphStyle('hdr',  parent=styles['Normal'], fontSize=8.5, leading=11,
+                           textColor=colors.white, fontName='Helvetica-Bold')
+
+    def row(q, src, ans):
+        return [Paragraph(q, cell), Paragraph(src, cell), Paragraph(ans, cell)]
+
     qa_data = [
-        ['Question', 'Primary article retrieved', 'Answer (excerpt)'],
-        ['How many majors has Tiger Woods won?',
-         'tiger_woods.md',
-         '15 major championships — 5 Masters, 4 U.S. Opens, 3 The Open Championships, 3 PGA Championships.'],
-        ['What is Amen Corner at Augusta?',
-         'augusta_national.md',
-         'Holes 11, 12, and 13 — famous for water, wind, and drama; named by writer Herbert Warren Wind.'],
-        ['How does the handicap system work?',
-         'handicap_system.md',
-         'World Handicap System averages best 8 of your last 20 score differentials; accounts for course rating and slope.'],
-        ['What makes links golf different?',
-         'the_open_championship.md',
-         'Coastal terrain, firm fast fairways, pot bunkers, unpredictable wind — demands ground game and creativity.'],
+        [Paragraph('Question', hdr), Paragraph('Article retrieved', hdr), Paragraph('Answer (excerpt)', hdr)],
+        row('How many majors has Tiger Woods won?',
+            'tiger_woods.md',
+            '15 majors — 5 Masters, 4 U.S. Opens, 3 Open Championships, 3 PGA Championships.'),
+        row('What is Amen Corner at Augusta?',
+            'augusta_national.md',
+            'Holes 11–13; famous for water, wind, and drama. Named by writer Herbert Warren Wind.'),
+        row('How does the handicap system work?',
+            'handicap_system.md',
+            'WHS averages your best 8 of last 20 score differentials, adjusted for course rating and slope.'),
+        row('What makes links golf different?',
+            'the_open_championship.md',
+            'Coastal terrain, firm fairways, pot bunkers, unpredictable wind — demands creativity and ground game.'),
     ]
     story += [
-        tbl(qa_data, [1.7*inch, 1.5*inch, 3.4*inch]),
+        tbl(qa_data, [2.0*inch, 1.4*inch, 3.0*inch]),
         SP,
     ]
 
