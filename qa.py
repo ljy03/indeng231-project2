@@ -7,6 +7,9 @@ Reads all markdown files, finds the most relevant ones, then answers using Claud
 import os
 import re
 import anthropic
+from dotenv import load_dotenv
+
+load_dotenv()
 
 WIKI_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'wiki')
 

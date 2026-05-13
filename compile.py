@@ -8,6 +8,9 @@ An index file (wiki/INDEX.md) is maintained for Q&A navigation.
 import os
 import re
 import anthropic
+from dotenv import load_dotenv
+
+load_dotenv()
 
 RAW_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'raw')
 WIKI_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'wiki')
